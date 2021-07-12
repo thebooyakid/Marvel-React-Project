@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { chooseName, chooseDescription } from '../../redux/slices/rootSlice';
+import { chooseName, chooseDescription, chooseComics_appeared_in, chooseSuper_powers } from '../../redux/slices/rootSlice';
 import { Input } from '../sharedComponents/Input';
 import { Button } from '@material-ui/core';
 import { server_calls } from '../../api';
@@ -15,6 +15,8 @@ interface HeroFormProps {
 interface HeroState {
     name: string;
     description: string;
+    comics_appeared_in: number;
+    super_powers: string;
 }
 
 export const MarvelForm = (props:HeroFormProps) => {
@@ -24,6 +26,8 @@ export const MarvelForm = (props:HeroFormProps) => {
     const store = useStore()
     const name = useSelector<HeroState>(state => state.name)
     const description = useSelector<HeroState>(state => state.description)
+    const comics_appeared_in = useSelector<HeroState>(state => state.comics_appeared_in)
+    const super_powers = useSelector<HeroState>(state => state.super_powers)
     const { register, handleSubmit } = useForm({ })
 
     const onSubmit = (data:any, event:any) => {
@@ -35,8 +39,10 @@ export const MarvelForm = (props:HeroFormProps) => {
             window.location.reload()
             // event.target.reset();
         } else {
-            dispatch(chooseName(data.hero_name))
-            dispatch(chooseDescription(data.description))
+            // dispatch(chooseName(data.name))
+            // dispatch(chooseDescription(data.description))
+            // dispatch(chooseComics_appeared_in(data.comics_appeared_in))
+            // dispatch(chooseSuper_powers(data.super_powers))
             server_calls.create(store.getState())
             //setTimeout(() => {window.location.reload(); }, 1000);
         }

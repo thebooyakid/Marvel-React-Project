@@ -44,7 +44,7 @@ export const DataTable = () => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <h2>Heroes In Inventory</h2>
-      <DataGrid rows={heroData} columns={columns} pageSize={5} checkboxSelection onRowSelected = { setData } />
+      <DataGrid rows={heroData} columns={columns} pageSize={10} checkboxSelection onRowSelected = { setData } />
 
     <Button onClick={handleOpen}>Update</Button>
     <Button variant="contained" color="secondary" onClick={deleteData}>Delete</Button>
